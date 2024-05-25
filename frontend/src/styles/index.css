@@ -1,0 +1,23 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: "Inter", sans-serif;
+}
+
+:root {
+  /* colors */
+  --c-primary: #f84464;
+  --c-primary-dark: #700c1e;
+  --c-primary-light: #e0afb7;
+  --c-gray: #f1ecec;
+
+  /* radius */
+  --radius: 0.5rem;
+
+  /* transition */
+  --t: all 0.3s ease-in-out;
+}

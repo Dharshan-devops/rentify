@@ -25,5 +25,9 @@ router.delete("/deleteProperty",Authorization,deleteProperty)
 const filterProperties=require('../controllers/filterProperty')
 router.post("/filterProperty",filterProperties)
 
+//contactSeller
+const contactSeller=require('../controllers/contactSeller')
+router.post("/contactSeller",contactSeller)
+
 
 module.exports=router

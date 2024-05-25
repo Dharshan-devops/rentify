@@ -1,0 +1,248 @@
+.container {
+  max-width: 1200px;
+  padding: 0 2rem;
+  margin: 0 auto 0;
+}
+
+/* header */
+
+header {
+  background-color: var(--c-primary-light);
+  padding: 1rem;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  height: 30px;
+  z-index: 10;
+}
+
+header div {
+  max-width: 1200px;
+  padding: 0 1rem 0;
+  margin: 0 auto 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  font-size: 24px;
+  letter-spacing: 6px;
+}
+
+/* tabs */
+
+.tabs {
+  width: 100vw;
+  background-color: var(--c-gray);
+  padding-top: 150px;
+  border-bottom: 2px solid var(--c-primary);
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 80px;
+}
+
+.tab {
+  padding: 10px 30px;
+  background-color: white;
+  color: black;
+  border-radius: var(--radius) var(--radius) 0 0;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--t);
+}
+
+.tab.active {
+  background-color: var(--c-primary);
+  color: white;
+}
+
+/* buy */
+
+.search {
+  width: 80%;
+  margin: 0 auto 0;
+}
+
+.search input {
+  width: 100%;
+  padding: 1rem;
+  border: solid 2px var(--c-primary);
+  border-radius: 10px;
+  outline: none;
+  font-size: 20px;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 50px;
+}
+
+.item {
+  display: flex;
+  padding: 1rem;
+  border-radius: var(--radius);
+  background-color: var(--c-gray);
+  width: 100%;
+  gap: 20px;
+}
+
+.image-container {
+  width: 30%;
+}
+
+.image-container img {
+  width: 100%;
+  border-radius: var(--radius);
+}
+
+.content-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.content-inner-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.content {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.title {
+  font-size: 24px;
+}
+
+.cta-button {
+  background-color: var(--c-primary);
+  padding: 1rem;
+  text-align: center;
+  border-radius: var(--radius);
+  color: white;
+  cursor: pointer;
+  transition: var(--t);
+  text-transform: uppercase;
+}
+
+.cta-button:hover {
+  background-color: var(--c-primary-dark);
+}
+
+/* sell */
+
+.sell-heading {
+  font-size: 30px;
+  margin-bottom: 30px;
+}
+
+.sell-btn {
+  background-color: var(--c-primary);
+  padding: 1rem;
+  text-align: center;
+  border-radius: var(--radius);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: var(--t);
+  text-transform: uppercase;
+  border: none;
+  margin-bottom: 30px;
+}
+
+.sell-btn:hover {
+  background-color: var(--c-primary-dark);
+}
+
+.sell-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  width: 100%;
+}
+
+.sell-card {
+  display: flex;
+  padding: 1rem;
+  border-radius: var(--radius);
+  background-color: var(--c-gray);
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sell-content {
+  display: flex;
+  gap: 20px;
+}
+
+.sell-edit,
+.sell-delete {
+  padding: 1rem 2rem;
+  border-radius: var(--radius);
+  color: white;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.sell-edit {
+  background-color: rgb(66, 66, 234);
+}
+
+.sell-delete {
+  background-color: black;
+}
+
+.pop-container {
+  position: fixed;
+  max-height: 500px;
+  top: 20%;
+  overflow-y: scroll;
+  width: 100vw;
+  max-width: 500px;
+  margin: 0 auto 0;
+  background-color: var(--c-primary-light);
+}
+
+.pop-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 2rem;
+  border-radius: var(--radius);
+}
+
+.pop-form div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.pop-form * input,
+button {
+  padding: 1rem;
+  border-radius: var(--radius);
+  outline: none;
+  border: none;
+}
+
+.pop-close,
+.pop-save {
+  background-color: var(--c-primary);
+  padding: 1rem;
+  text-align: center;
+  border-radius: var(--radius);
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  transition: var(--t);
+  text-transform: uppercase;
+  border: none;
+  margin-bottom: 30px;
+}
