@@ -1,7 +1,7 @@
 const Property = require('../Models/propertyModel');
 
 const addProperty = async (req, res) => {
-    const { title, description, place, area, bedrooms, bathrooms, nearbyHospitals, nearbyColleges } = req.body;
+    const { title, description, place, area, bedrooms, bathrooms, nearbyHospitals, nearbyColleges,imageUrl } = req.body;
     try {
         const property = new Property({
           title,
@@ -12,10 +12,7 @@ const addProperty = async (req, res) => {
           bathrooms,
           nearbyHospitals: nearbyHospitals.split(','),
           nearbyColleges: nearbyColleges.split(','),
-        //   image: {
-        //     data: req.file.buffer,
-        //     type: req.file.mimetype
-        //   },
+          imageUrl,
           seller: req.user_id
         });
         await property.save();

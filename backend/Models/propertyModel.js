@@ -9,11 +9,7 @@ const propertySchema = new mongoose.Schema({
   bathrooms: { type: Number, required: true },
   nearbyHospitals: [{ type: String, required: true }],
   nearbyColleges: [{ type: String, required: true }],
-  image: {
-    data: Buffer,
-    type: String,
-    // required: true
-  },
+  imageUrl: {type:String,required:true},
   seller: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
   createdAt: { type: Date, default: Date.now }
 });
