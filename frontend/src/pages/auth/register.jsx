@@ -3,11 +3,33 @@ import styles from "../auth/auth.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 
-function Login() {
+function Register() {
   const formRef = useRef();
 
-  const handleSubmit = (e) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const res = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/auth/register`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName: formRef.current.firstName.value,
+          lastName: formRef.current.lastName.value,
+          email: formRef.current.email.value,
+          phoneNumber: formRef.current.phoneNumber.value,
+          password: formRef.current.password.value,
+        }),
+      }
+    );
+
+    if (res.ok) {
+      navigate("/login", { relative: "path" });
+    }
   };
 
   return (
@@ -20,28 +42,31 @@ function Login() {
               type="text"
               placeholder="Enter your first name"
               id="firstName"
+              required
             />
             <input
               type="text"
               placeholder="Enter your last name"
               id="lastName"
+              required
             />
             <input
               type="tel"
               placeholder="Enter your mobile number"
-              id="mobile"
+              id="phoneNumber"
+              required
             />
-            <input type="email" placeholder="Enter your email" id="email" />
+            <input
+              type="email"
+              placeholder="Enter your email"
+              id="email"
+              required
+            />
             <input
               type="password"
               placeholder="Enter your password"
               id="password"
-            />
-            <input
-              type="password"
-              placeholder="confirm the password"
-              id="confirmPassword"
-              name="confirmPassword"
+              required
             />
             <button type="submit">register</button>
           </form>
@@ -55,4 +80,4 @@ function Login() {
   );
 }
 
-export default Login;
+export default Register;

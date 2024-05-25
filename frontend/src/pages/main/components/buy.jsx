@@ -10,6 +10,7 @@ function Buy() {
       `${process.env.REACT_APP_BACKEND_URL}/v1/getAllProperties`
     );
     const data = await res.json();
+    console.log(data);
     setData(data);
   };
 
@@ -31,27 +32,24 @@ function Buy() {
           {data.map((value, index) => (
             <div className="item" key={index}>
               <div className="image-container">
-                <img />
+                <img src={value.imageUrl} />
               </div>
 
               <div className="content-container">
                 <div className="content-inner-container">
-                  <div className="title">title</div>
+                  <div className="title">{value.title}</div>
                   <div className="content content-1">
-                    <div>bedroom</div>
-                    <div>bathroom</div>
+                    <div>bedrooms : {value.bedrooms}</div>
+                    <div>bathroom : {value.bathrooms}</div>
                   </div>
-                  <div className="description">
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                    Fuga, cum.
-                  </div>
+                  <div className="description">{value.description}</div>
                   <div className="content content-2">
-                    <div>200sf</div>
-                    <div>bangalore</div>
+                    <div>area : {value.area} sq</div>
+                    <div>place : {value.place} sq</div>
                   </div>
                   <div className="content content-3">
-                    <div>hospitals</div>
-                    <div>colleges</div>
+                    <div>nearby hospitals : {value.nearbyHospitals}</div>
+                    <div>nearby colleges : {value.nearbyColleges}</div>
                   </div>
                 </div>
 

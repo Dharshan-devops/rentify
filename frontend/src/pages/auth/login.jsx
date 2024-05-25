@@ -5,10 +5,26 @@ import { ToastContainer, toast } from "react-toastify";
 
 function Login() {
   const formRef = useRef();
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData(formRef.current);
+    const res = await fetch(`${process.env.REACT_APP_BACKEND_URL}/auth/login`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: formRef.current.email.value,
+        password: formRef.current.password.value,
+      }),
+    });
+
+    navigate("/", { relative: "path" });
+
+    if (res.ok) {
+      navigate("/", { relative: "path" });
+    }
   };
 
   return (

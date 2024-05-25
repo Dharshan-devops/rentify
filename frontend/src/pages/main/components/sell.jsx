@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Pop from "./pop";
 
 function Sell() {
@@ -16,7 +16,23 @@ function Sell() {
     imageUrl: "",
   };
 
-  const [data, setData] = useState(undefined);
+  const [data, setData] = useState();
+
+  const [propertiesData, setPropertiesData] = useState();
+
+  const fetchData = async () => {
+    console.log(process.env.REACT_APP_BACKEND_URL);
+    const res = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/v1/properties/id`
+    );
+    const data = await res.json();
+    console.log(data);
+    setData(data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <>
