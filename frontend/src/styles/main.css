@@ -202,11 +202,15 @@ header div {
 .pop-container {
   position: fixed;
   max-height: 500px;
-  top: 20%;
+  top: 40%;
+  left: 50%;
+  translate: -50% -50%;
   overflow-y: scroll;
   width: 100vw;
   max-width: 500px;
   margin: 0 auto 0;
+  border-radius: 10px;
+  padding: 30px;
   background-color: var(--c-primary-light);
 }
 

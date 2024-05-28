@@ -5,12 +5,10 @@ function Buy() {
   const [data, setData] = useState();
 
   const fetchData = async () => {
-    console.log(process.env.REACT_APP_BACKEND_URL);
     const res = await fetch(
       `${process.env.REACT_APP_BACKEND_URL}/v1/getAllProperties`
     );
     const data = await res.json();
-    console.log(data);
     setData(data);
   };
 

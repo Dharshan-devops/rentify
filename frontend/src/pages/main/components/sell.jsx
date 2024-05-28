@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Pop from "./pop";
 
-function Sell() {
+function Sell({ userId }) {
   const [pop, setPop] = useState(false);
-
+  const [reqType, setReqType] = useState();
   const initialData = {
     title: "",
     description: "",
@@ -21,18 +21,16 @@ function Sell() {
   const [propertiesData, setPropertiesData] = useState();
 
   const fetchData = async () => {
-    console.log(process.env.REACT_APP_BACKEND_URL);
     const res = await fetch(
-      `${process.env.REACT_APP_BACKEND_URL}/v1/properties/id`
+      `${process.env.REACT_APP_BACKEND_URL}/v1/sellerProperties/${userId}`
     );
     const data = await res.json();
-    console.log(data);
-    setData(data);
+    setPropertiesData(data);
   };
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [pop]);
 
   return (
     <>
@@ -42,23 +40,41 @@ function Sell() {
         onClick={() => {
           setPop(true);
           setData(initialData);
+          setReqType("POST");
         }}
       >
         add property +
       </button>
       <div className="sell-cards">
-        <div className="sell-card">
-          <div className="sell-property">property name</div>
-          <div className="sell-content">
-            <div className="sell-edit">edit</div>
-            <div className="sell-delete">delete</div>
-          </div>
-        </div>
+        {propertiesData != undefined &&
+          propertiesData.map((item, index) => (
+            <div className="sell-card" key={index}>
+              <div className="sell-property">{item.title}</div>
+              <div className="sell-content">
+                <div
+                  className="sell-edit"
+                  onClick={() => {
+                    setPop(true);
+                    setData(item);
+                    setReqType("PUT");
+                  }}
+                >
+                  edit
+                </div>
+                <div className="sell-delete">delete</div>
+              </div>
+            </div>
+          ))}
       </div>
       {pop && (
         <>
           <div className="pop-container">
-            <Pop setPop={setPop} data={data} />
+            <Pop
+              setPop={setPop}
+              reqType={reqType}
+              data={data}
+              userId={userId}
+            />
           </div>
         </>
       )}

@@ -1,7 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
+import Cookies from "js-cookie";
 
-function Pop({ setPop, data }) {
-  const onChange = (e) => {};
+function Pop({ setPop, data, userId, reqType }) {
+  const [inputData, setInputData] = useState(data);
+  const onChange = (e) => {
+    setInputData((initValue) => ({
+      ...initValue,
+      [e.target.name]: e.target.value,
+    }));
+  };
+  const addProperty = async (e) => {
+    e.preventDefault();
+    const res = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/v1/${
+        reqType == "POST" ? `addProperty/${userId}` : "updateProperty"
+      }`,
+      {
+        method: reqType,
+        headers: {
+          "Content-Type": "application/json",
+          token: Cookies.get("token"),
+        },
+        body: JSON.stringify(inputData),
+      }
+    );
+    if (res.ok) {
+      setPop(false);
+    }
+  };
+
   return (
     <div className="pop-inner-container">
       <button onClick={() => setPop(false)} className="pop-close">
@@ -15,7 +42,7 @@ function Pop({ setPop, data }) {
             id="title"
             name="title"
             placeholder="property name"
-            value={data.title}
+            value={inputData.title}
             onChange={onChange}
           />
         </div>
@@ -26,7 +53,7 @@ function Pop({ setPop, data }) {
             id="description"
             name="description"
             placeholder="description"
-            value={data.description}
+            value={inputData.description}
             onChange={onChange}
           />
         </div>
@@ -37,7 +64,7 @@ function Pop({ setPop, data }) {
             id="place"
             name="place"
             placeholder="place"
-            value={data.place}
+            value={inputData.place}
             onChange={onChange}
           />
         </div>
@@ -48,7 +75,7 @@ function Pop({ setPop, data }) {
             id="area"
             name="area"
             placeholder="sq feet"
-            value={data.area}
+            value={inputData.area}
             onChange={onChange}
           />
         </div>
@@ -59,7 +86,7 @@ function Pop({ setPop, data }) {
             id="bedrooms"
             name="bedrooms"
             placeholder="no.of bedrooms"
-            value={data.bedrooms}
+            value={inputData.bedrooms}
             onChange={onChange}
             required
           />
@@ -71,7 +98,7 @@ function Pop({ setPop, data }) {
             id="bathrooms"
             name="bathrooms"
             placeholder="no.of bathrooms"
-            value={data.bathrooms}
+            value={inputData.bathrooms}
             onChange={onChange}
             required
           />
@@ -83,7 +110,7 @@ function Pop({ setPop, data }) {
             id="nearbyHospitals"
             name="nearbyHospitals"
             placeholder="nearby hospitals"
-            value={data.nearbyHospitals}
+            value={inputData.nearbyHospitals}
             onChange={onChange}
             required
           />
@@ -95,7 +122,7 @@ function Pop({ setPop, data }) {
             id="nearbyColleges"
             name="nearbyColleges"
             placeholder="nearby colleges"
-            value={data.nearbyColleges}
+            value={inputData.nearbyColleges}
             onChange={onChange}
             required
           />
@@ -107,12 +134,12 @@ function Pop({ setPop, data }) {
             id="imageUrl"
             name="imageUrl"
             placeholder="property image url"
-            value={data.imageUrl}
+            value={inputData.imageUrl}
             onChange={onChange}
             required
           />
         </div>
-        <button type="submit" className="pop-save">
+        <button type="submit" onClick={addProperty} className="pop-save">
           submit
         </button>
       </form>

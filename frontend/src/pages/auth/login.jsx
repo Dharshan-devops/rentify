@@ -2,6 +2,7 @@ import React, { useRef } from "react";
 import styles from "../auth/auth.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
+import Cookies from "js-cookie";
 
 function Login() {
   const formRef = useRef();
@@ -20,9 +21,9 @@ function Login() {
       }),
     });
 
-    navigate("/", { relative: "path" });
-
     if (res.ok) {
+      const data = await res.json();
+      Cookies.set("token", data.AuthToken);
       navigate("/", { relative: "path" });
     }
   };
