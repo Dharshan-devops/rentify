@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 function Buy() {
   const [searchInput, setSearchInput] = useState("");
   const [data, setData] = useState();
+  const [sellerData, setSellerData] = useState();
 
   const fetchData = async () => {
     const res = await fetch(
@@ -10,6 +11,16 @@ function Buy() {
     );
     const data = await res.json();
     setData(data);
+  };
+
+  const displaySellerDetails = async (sellerId) => {
+    const res = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/v1/contactSeller/${sellerId}`
+    );
+    if (res.ok) {
+      let { data } = await res.json();
+      setSellerData(data);
+    }
   };
 
   useEffect(() => {
@@ -51,10 +62,27 @@ function Buy() {
                   </div>
                 </div>
 
-                <div className="cta-button">Contact seller</div>
+                <div
+                  className="cta-button"
+                  onClick={() => displaySellerDetails(value.seller)}
+                >
+                  Contact seller
+                </div>
               </div>
             </div>
           ))}
+        </div>
+      )}
+      {sellerData != undefined && (
+        <div className="pop-container">
+          <div className="pop-close" onClick={() => setSellerData(undefined)}>
+            close
+          </div>
+          <div className="seller-info">
+            <div>Name : {sellerData.name}</div>
+            <div>Email : {sellerData.email}</div>
+            <div>Phone : {sellerData.phoneNumber}</div>
+          </div>
         </div>
       )}
     </>

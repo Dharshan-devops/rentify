@@ -16,16 +16,31 @@ header {
   z-index: 10;
 }
 
-header div {
+header > div {
   max-width: 1200px;
   padding: 0 1rem 0;
   margin: 0 auto 0;
   height: 100%;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
   text-transform: uppercase;
   font-size: 24px;
   letter-spacing: 6px;
+}
+
+.log-out {
+  background-color: var(--c-primary);
+  padding: 0.5rem 1rem;
+  text-align: center;
+  border-radius: var(--radius);
+  color: white;
+  cursor: pointer;
+  transition: var(--t);
+  text-transform: uppercase;
 }
 
 /* tabs */
@@ -135,6 +150,17 @@ header div {
   background-color: var(--c-primary-dark);
 }
 
+.seller-info {
+  display: flex;
+  gap: 1.5rem;
+  flex-direction: column;
+}
+
+.seller-info * {
+  font-size: 20px;
+  font-weight: 500;
+}
+
 /* sell */
 
 .sell-heading {
@@ -202,7 +228,7 @@ header div {
 .pop-container {
   position: fixed;
   max-height: 500px;
-  top: 40%;
+  top: 50%;
   left: 50%;
   translate: -50% -50%;
   overflow-y: scroll;

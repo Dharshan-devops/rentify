@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Pop from "./pop";
+import Cookies from "js-cookie";
 
 function Sell({ userId }) {
   const [pop, setPop] = useState(false);
@@ -26,6 +27,22 @@ function Sell({ userId }) {
     );
     const data = await res.json();
     setPropertiesData(data);
+  };
+
+  const deleteProperty = async (id) => {
+    const res = await fetch(
+      `${process.env.REACT_APP_BACKEND_URL}/v1/deleteProperty/${id}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          token: Cookies.get("token"),
+        },
+      }
+    );
+    if (res.ok) {
+      fetchData();
+    }
   };
 
   useEffect(() => {
@@ -61,7 +78,12 @@ function Sell({ userId }) {
                 >
                   edit
                 </div>
-                <div className="sell-delete">delete</div>
+                <div
+                  className="sell-delete"
+                  onClick={() => deleteProperty(item._id)}
+                >
+                  delete
+                </div>
               </div>
             </div>
           ))}

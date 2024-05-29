@@ -17,7 +17,7 @@ router.put("/updateProperty", Authorization, updateProperty);
 
 //deleteProperty Endpoint
 const deleteProperty = require("../controllers/deleteProperty");
-router.delete("/deleteProperty", Authorization, deleteProperty);
+router.delete("/deleteProperty/:id", Authorization, deleteProperty);
 
 //filter
 const filterProperties = require("../controllers/filterProperty");
@@ -25,7 +25,7 @@ router.post("/filterProperty", filterProperties);
 
 //contactSeller
 const contactSeller = require("../controllers/contactSeller");
-router.post("/contactSeller", contactSeller);
+router.get("/contactSeller/:id", contactSeller);
 
 //seller properties
 router.get("/sellerProperties/:sellerId", async (req, res) => {
